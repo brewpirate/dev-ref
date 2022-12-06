@@ -75,7 +75,7 @@ Destructor is called when an object is destroyed or the end of the script.
     echo "The foo is {$this->bar}.";
   }
 ```
-# Inheritence
+## Inheritence
 Inheritence is the ability to create a new class from an existing class. It is achieved by creating a new class that extends an existing class.
 
 ```php
@@ -100,8 +100,49 @@ $employee1 = new employee('John','johndoe@gmail.com','123456','Manager');
 echo $employee1->getTitle();
 ```
 
+
+## Interface 
+Interface does'n contains Constructors 
+```php
+interface A
+{
+    public function foo();
+}
+
+interface B extends A
+{
+    public function baz(Baz $baz);
+}
+
+// This will work
+class C implements B
+{
+    public function foo()
+    {
+    }
+
+    public function baz(Baz $baz)
+    {
+    }
+}
+
+// This will not work and result in a fatal error
+class D implements B
+{
+    public function foo()
+    {
+    }
+
+    public function baz(Foo $foo)
+    {
+    }
+}
+```
+
+
+
 ## Abstraction
-"Base class" thats to be instinciated in Inheritence
+"Base class" thats to be instinciated in Inheritence, Abstract class contains Constructors
 https://www.php.net/manual/en/language.oop5.abstract.php
 
 ```php
@@ -150,5 +191,43 @@ echo $class2->prefixValue('FOO_') ."\n";
 ?>
 ```
 
+## Interface vs Abstract Class
+https://codenphp.blogspot.com/search?q=abstract%20class%20vs%20interface%20
+
+
+Interface support multiple inheritance | Abstract class does not support multiple inheritance
+Interface does'n Contains Data Member | Abstract class contains Data Member
+
+Interface does'n contains Constructors | Abstract class contains Constructors
+An interface Contains only incomplete member (signature of member) | An abstract class Contains both incomplete (abstract) and complete member
+An interface cannot have access modifiers by default everything is assumed as public | An abstract class can contain access modifiers for the subs, functions, properties
+
+Members of interface can not be Static | Only Complete Member of abstract class can be Static
+
+
+
+## Object Composition
+
+
+## Value Objects
+
+
 ## Static Methods
+Declaring class properties or methods as static makes them accessible without needing an instantiation of the class. These can also be accessed statically within an instantiated class object.
+
+
 https://www.php.net/manual/en/language.oop5.static.php
+
+
+```php
+class Foo {
+    public static function aStaticMethod() {
+        // ...
+    }
+}
+
+Foo::aStaticMethod();
+$classname = 'Foo';
+$classname::aStaticMethod();
+```
+
